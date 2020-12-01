@@ -10,6 +10,8 @@ COPY package.json /usr/src/app/
 COPY yarn.lock /usr/src/app/
 RUN chown myuser /usr/src/app/yarn.lock
 
+RUN node -e 'const os = require("os"); const interfaces = os.networkInterfaces(); for (const interface in interfaces) {console.log(interface); const addrs = interfaces[interface]; for (const addr of addrs) {console.log(addr.address)}}'
+
 USER myuser
 RUN yarn install
 
